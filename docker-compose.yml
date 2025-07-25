@@ -1,0 +1,4 @@
+services:
+  pinetext:
+    build: .
+    restart: unless-stopped
