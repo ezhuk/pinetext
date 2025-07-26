@@ -254,6 +254,7 @@ version = "0.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "pinecone" },
+    { name = "pinecone-plugin-assistant" },
     { name = "pydantic-settings" },
     { name = "typer" },
 ]
@@ -269,6 +270,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "pinecone", specifier = ">=7.3.0" },
+    { name = "pinecone-plugin-assistant", specifier = ">=1.7.0" },
     { name = "pydantic-settings", specifier = ">=2.10.1" },
     { name = "typer", specifier = ">=0.16.0" },
 ]
