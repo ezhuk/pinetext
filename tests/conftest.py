@@ -7,6 +7,6 @@ def cli(monkeypatch):
         return
 
     monkeypatch.setattr(
-        "pinetext.cli.PineText.run",
+        "pinetext.client.PineText.run",
         dummy_run,
     )

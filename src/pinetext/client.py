@@ -11,6 +11,9 @@ settings = Settings()
 
 class PineText:
     def __init__(self):
+        pass
+
+    def run(self):
         self.pinecone = Pinecone(api_key=settings.pinecone.api_key)
         self.assistant = self.pinecone.assistant.create_assistant(
             assistant_name=settings.pinecone.assistant,
@@ -19,7 +22,6 @@ class PineText:
         )
         self.data_dir = Path(settings.pinecone.data_dir)
 
-    def run(self):
         for f in sorted(self.data_dir.iterdir()):
             print(f"Uploading {f.name}...")
             self.assistant.upload_file(
