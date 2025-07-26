@@ -6,7 +6,7 @@ class Pinecone(BaseModel):
     api_key: str | None = None
     assistant: str | None = "test-assistant"
     data_dir: str | None = "data"
-    model: str | None = None
+    model: str | None = "o4-mini"
 
 
 class Settings(BaseSettings):
