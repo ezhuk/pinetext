@@ -2,6 +2,7 @@ import pytest
 
 from pathlib import Path
 
+import pinetext.client as client_mod
 from pinetext.client import PineText
 
 
@@ -45,11 +46,15 @@ def pinetext(monkeypatch):
 
             return Response("Test")
 
+    assistant = DummyAssistant()
+
     class DummyPinecone:
-        def __init__(self, assistant: DummyAssistant):
+        def __init__(self, api_key):
             self.assistant = assistant
 
+    monkeypatch.setattr(client_mod, "Pinecone", DummyPinecone)
+
     client = PineText()
-    client.assistant = DummyAssistant()
-    client.pinecone = DummyPinecone(client.assistant)
+    client.assistant = assistant
+    client.pinecone = DummyPinecone(None)
     return client

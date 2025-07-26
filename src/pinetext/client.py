@@ -20,17 +20,19 @@ class PineText:
             return self.pinecone.assistant.create_assistant(assistant_name=name)
 
     def upload_files(self, path: str):
-        uploaded = [x.name for x in self.assistant.list_files()]
-        for x in sorted(Path(path).iterdir()):
-            if x.name not in uploaded:
-                self.assistant.upload_file(
-                    file_path=str(x.resolve()),
-                    metadata={
-                        "filename": x.name,
-                        "extension": x.suffix.lower().lstrip("."),
-                    },
-                    timeout=None,
-                )
+        folder = Path(path)
+        if folder.is_dir():
+            uploaded = [x.name for x in self.assistant.list_files()]
+            for x in sorted(folder.iterdir()):
+                if x.name not in uploaded:
+                    self.assistant.upload_file(
+                        file_path=str(x.resolve()),
+                        metadata={
+                            "filename": x.name,
+                            "extension": x.suffix.lower().lstrip("."),
+                        },
+                        timeout=None,
+                    )
 
     def chat(self, text: str, model: str):
         msg = Message(role="user", content=text)
