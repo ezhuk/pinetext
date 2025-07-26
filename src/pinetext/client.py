@@ -13,25 +13,38 @@ class PineText:
     def __init__(self):
         pass
 
+    def get_or_create_assistant(self, name: str):
+        try:
+            return self.pinecone.assistant.describe_assistant(assistant_name=name)
+        except Exception:
+            return self.pinecone.assistant.create_assistant(assistant_name=name)
+
+    def upload_files(self, path: str):
+        uploaded = [x.name for x in self.assistant.list_files()]
+        for x in sorted(Path(path).iterdir()):
+            if x.name not in uploaded:
+                self.assistant.upload_file(
+                    file_path=str(x.resolve()),
+                    metadata={
+                        "filename": x.name,
+                        "extension": x.suffix.lower().lstrip("."),
+                    },
+                    timeout=None,
+                )
+
+    def chat(self, text: str, model: str):
+        msg = Message(role="user", content=text)
+        resp = self.assistant.chat(messages=[msg], model=model)
+        return resp.message.content
+
     def run(self):
         self.pinecone = Pinecone(api_key=settings.pinecone.api_key)
-        self.assistant = self.pinecone.assistant.create_assistant(
-            assistant_name=settings.pinecone.assistant,
-            instructions="You are a helpful assistant. Answer in polite, short sentences. Use American English spelling and vocabulary.",
-            timeout=15,
-        )
-        self.data_dir = Path(settings.pinecone.data_dir)
-
-        for f in sorted(self.data_dir.iterdir()):
-            print(f"Uploading {f.name}...")
-            self.assistant.upload_file(
-                file_path=str(f.resolve()), metadata={"filename": f.name}, timeout=None
-            )
+        self.assistant = self.get_or_create_assistant(settings.pinecone.assistant)
+        self.upload_files(settings.pinecone.data_dir)
 
         while True:
-            q = input("> ").strip()
-            if q.lower() in ("exit", "quit"):
+            text = input("> ").strip()
+            if text.lower() in ("exit", "quit"):
                 break
-            msg = Message(role="user", content=q)
-            res = self.assistant.chat(messages=[msg])
-            print(res.message.content)
+            res = self.chat(text, settings.pinecone.model)
+            print(res)
