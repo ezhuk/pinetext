@@ -69,6 +69,12 @@ docker run -it \
   ghcr.io/ezhuk/pinetext:latest
 ```
 
+Or using Docker Compose:
+
+```bash
+docker compose up
+```
+
 ## License
 
 The server is licensed under the [MIT License](https://github.com/ezhuk/pinetext?tab=MIT-1-ov-file).
