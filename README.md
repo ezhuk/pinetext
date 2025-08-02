@@ -8,7 +8,7 @@ A lightweight assistant built using [Pinecone](https://docs.pinecone.io/guides/a
 
 ## Getting Started
 
-Use [uv](https://github.com/astral-sh/uv) to add and manage PineText as a dependency in your project, or install it directly via `uv pip install` or `pip install`. See the [Installation](https://github.com/ezhuk/modbus-mcp/blob/main/docs/modbus-mcp/installation.mdx) section of the documentation for full installation instructions and more details.
+Use [uv](https://github.com/astral-sh/uv) to add and manage PineText as a dependency in your project, or install it directly via `uv pip install` or `pip install`. See the [Installation](https://github.com/ezhuk/pinetext/blob/main/docs/pinetext/installation.mdx) section of the documentation for full installation instructions and more details.
 
 ```bash
 uv add pinetext
