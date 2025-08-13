@@ -9,8 +9,14 @@ class Pinecone(BaseModel):
     model: str | None = "o4-mini"
 
 
+class WandB(BaseModel):
+    api_key: str | None = None
+    project: str | None = "pinetext"
+
+
 class Settings(BaseSettings):
     pinecone: Pinecone = Pinecone()
+    wandb: WandB = WandB()
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
