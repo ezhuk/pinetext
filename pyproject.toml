@@ -7,10 +7,10 @@ requires-python = ">=3.13"
 dependencies = [
     "pinecone>=7.3.0",
     "pinecone-plugin-assistant>=1.7.0",
-    "pydantic-settings>=2.10.1",
+    "pydantic-settings>=2.11.0",
     "typer>=0.16.0",
-    "wandb>=0.21.1",
-    "weave>=0.51.59",
+    "wandb>=0.22.2",
+    "weave>=0.52.9",
 ]
 
 [project.scripts]
