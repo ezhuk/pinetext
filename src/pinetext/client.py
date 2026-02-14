@@ -1,12 +1,10 @@
-import wandb
-import weave
-
 from pathlib import Path
 
 from pinecone import Pinecone
 from pinecone_plugins.assistant.models.chat import Message
 
 from pinetext.settings import Settings
+from pinetext import telemetry
 
 
 settings = Settings()
@@ -37,16 +35,14 @@ class PineText:
                         timeout=None,
                     )
 
-    @weave.op()
+    @telemetry.op()
     def chat(self, text: str, model: str):
         msg = Message(role="user", content=text)
         resp = self.assistant.chat(messages=[msg], model=model)
         return resp.message.content
 
     def run(self):
-        if settings.wandb.api_key:
-            wandb.login(key=settings.wandb.api_key)
-            weave.init(settings.wandb.project)
+        telemetry.init(settings.wandb.project, settings.wandb.api_key)
         self.pinecone = Pinecone(api_key=settings.pinecone.api_key)
         self.assistant = self.get_or_create_assistant(settings.pinecone.assistant)
         self.upload_files(settings.pinecone.data_dir)
