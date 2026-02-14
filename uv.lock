@@ -372,11 +372,11 @@ wheels = [
 
 [[package]]
 name = "filelock"
-version = "3.21.2"
+version = "3.24.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/73/71/74364ff065ca78914d8bd90b312fe78ddc5e11372d38bc9cb7104f887ce1/filelock-3.21.2.tar.gz", hash = "sha256:cfd218cfccf8b947fce7837da312ec3359d10ef2a47c8602edd59e0bacffb708", size = 31486, upload-time = "2026-02-13T01:27:15.223Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/00/cd/fa3ab025a8f9772e8a9146d8fd8eef6d62649274d231ca84249f54a0de4a/filelock-3.24.0.tar.gz", hash = "sha256:aeeab479339ddf463a1cdd1f15a6e6894db976071e5883efc94d22ed5139044b", size = 37166, upload-time = "2026-02-14T16:05:28.723Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/98/73/3a18f1e1276810e81477c431009b55eeccebbd7301d28a350b77aacf3c33/filelock-3.21.2-py3-none-any.whl", hash = "sha256:d6cd4dbef3e1bb63bc16500fc5aa100f16e405bbff3fb4231711851be50c1560", size = 21479, upload-time = "2026-02-13T01:27:13.611Z" },
+    { url = "https://files.pythonhosted.org/packages/d9/dd/d7e7f4f49180e8591c9e1281d15ecf8e7f25eb2c829771d9682f1f9fe0c8/filelock-3.24.0-py3-none-any.whl", hash = "sha256:eebebb403d78363ef7be8e236b63cc6760b0004c7464dceaba3fd0afbd637ced", size = 23977, upload-time = "2026-02-14T16:05:27.578Z" },
 ]
 
 [[package]]
@@ -909,7 +909,7 @@ wheels = [
 
 [[package]]
 name = "pinetext"
-version = "0.1.13"
+version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "pinecone" },
@@ -955,11 +955,11 @@ dev = [
 
 [[package]]
 name = "platformdirs"
-version = "4.7.1"
+version = "4.9.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d3/3e/c81eb24fb98b00bc097b9ce5dee6eca020c52619ed95b246aaec2018c511/platformdirs-4.7.1.tar.gz", hash = "sha256:6f4ff8472e482af4b7e67a183fbe63da846a9b34f57d5019c4d112a181003d82", size = 25254, upload-time = "2026-02-13T17:57:16.833Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6c/d5/763666321efaded11112de8b7a7f2273dd8d1e205168e73c334e54b0ab9a/platformdirs-4.9.1.tar.gz", hash = "sha256:f310f16e89c4e29117805d8328f7c10876eeff36c94eac879532812110f7d39f", size = 28392, upload-time = "2026-02-14T21:02:44.973Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/82/36dcca0cfa42ad259bf0eb1f7af0d5759710c21928856891631cb47e4771/platformdirs-4.7.1-py3-none-any.whl", hash = "sha256:06ac79ae0c5025949f62711e3f7cd178736515a29bcc669f42a216016cd1dc7a", size = 19070, upload-time = "2026-02-13T17:57:15.67Z" },
+    { url = "https://files.pythonhosted.org/packages/70/77/e8c95e95f1d4cdd88c90a96e31980df7e709e51059fac150046ad67fac63/platformdirs-4.9.1-py3-none-any.whl", hash = "sha256:61d8b967d34791c162d30d60737369cbbd77debad5b981c4bfda1842e71e0d66", size = 21307, upload-time = "2026-02-14T21:02:43.492Z" },
 ]
 
 [[package]]
@@ -1590,7 +1590,7 @@ wheels = [
 
 [[package]]
 name = "weave"
-version = "0.52.27"
+version = "0.52.28"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cachetools" },
@@ -1606,9 +1606,9 @@ dependencies = [
     { name = "tzdata", marker = "sys_platform == 'win32'" },
     { name = "wandb" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/04/42/b3804ef9a295288e064d99f1c842660bb2021ac77eea15ada517bd48a992/weave-0.52.27.tar.gz", hash = "sha256:263303b6d019e4d930a4b9fe860f150b2bcb5c101ca55db78d4d726f1fae688d", size = 693946, upload-time = "2026-02-13T23:45:23.836Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1e/3c/d215a000a8e85bc3ef6701a55ae00ea2f4b1e479e98b1935fcc59897df62/weave-0.52.28.tar.gz", hash = "sha256:592d96fc04daa43b4fd246e4af7f6c1db8094a87dc4be9b649512a8f3227a47d", size = 689363, upload-time = "2026-02-14T03:23:25.09Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7e/89/f45e1ee992d43a7e5a56e2ffd34b9c0929be31761dccde08ae2de3c1a2bc/weave-0.52.27-py3-none-any.whl", hash = "sha256:8e7051ff50c7b951867f4c7a6c14eeb12bf56ee39c0625e280c2584dd6c9e740", size = 862835, upload-time = "2026-02-13T23:45:21.534Z" },
+    { url = "https://files.pythonhosted.org/packages/50/a1/9b66a1fcf8d275abde61333b5dd5ca53d61224bfa4042d07e8f435379204/weave-0.52.28-py3-none-any.whl", hash = "sha256:eeff862fe1ead3a2513ae3e90593e32e40edb599c0f2ca21bcff03e5b2567003", size = 858203, upload-time = "2026-02-14T03:23:22.941Z" },
 ]
 
 [[package]]
