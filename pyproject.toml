@@ -1,21 +1,25 @@
 [project]
 name = "pinetext"
-version = "0.1.12"
+version = "0.1.13"
 description = "PineText"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "opentelemetry-proto>=1.39.1",
     "pinecone>=8.0.0",
     "pinecone-plugin-assistant>=3.0.0",
     "pydantic-settings>=2.12.0",
     "typer>=0.21.0",
-    "wandb>=0.23.1",
-    "weave>=0.52.23",
 ]
 
 [project.scripts]
 pinetext = "pinetext.cli:app"
+
+[project.optional-dependencies]
+observability = [
+    "opentelemetry-proto>=1.39.1",
+    "wandb>=0.25.0",
+    "weave>=0.52.27",
+]
 
 [build-system]
 requires = ["hatchling"]

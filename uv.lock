@@ -909,14 +909,18 @@ wheels = [
 
 [[package]]
 name = "pinetext"
-version = "0.1.12"
+version = "0.1.13"
 source = { editable = "." }
 dependencies = [
-    { name = "opentelemetry-proto" },
     { name = "pinecone" },
     { name = "pinecone-plugin-assistant" },
     { name = "pydantic-settings" },
     { name = "typer" },
+]
+
+[package.optional-dependencies]
+observability = [
+    { name = "opentelemetry-proto" },
     { name = "wandb" },
     { name = "weave" },
 ]
@@ -931,14 +935,15 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "opentelemetry-proto", specifier = ">=1.39.1" },
+    { name = "opentelemetry-proto", marker = "extra == 'observability'", specifier = ">=1.39.1" },
     { name = "pinecone", specifier = ">=8.0.0" },
     { name = "pinecone-plugin-assistant", specifier = ">=3.0.0" },
     { name = "pydantic-settings", specifier = ">=2.12.0" },
     { name = "typer", specifier = ">=0.21.0" },
-    { name = "wandb", specifier = ">=0.23.1" },
-    { name = "weave", specifier = ">=0.52.23" },
+    { name = "wandb", marker = "extra == 'observability'", specifier = ">=0.25.0" },
+    { name = "weave", marker = "extra == 'observability'", specifier = ">=0.52.27" },
 ]
+provides-extras = ["observability"]
 
 [package.metadata.requires-dev]
 dev = [
