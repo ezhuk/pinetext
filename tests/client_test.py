@@ -1,5 +1,7 @@
 import builtins
 
+from pinetext.client import PineText
+
 
 def test_get_or_create_assistant(pinetext):
     assistant = pinetext.get_or_create_assistant("foo")
@@ -23,3 +25,9 @@ def test_run(pinetext, monkeypatch):
     monkeypatch.setattr(builtins, "input", lambda prompt="": next(iter(["exit"])))
     res = pinetext.run()
     assert res is None
+
+
+def test_data_dir():
+    data = "data"
+    client = PineText(data_dir=data)
+    assert client.settings.pinecone.data_dir == data
