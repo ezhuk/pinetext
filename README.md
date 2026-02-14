@@ -21,7 +21,7 @@ It can be embedded in and run directly from your application.
 from pinetext import PineText
 
 def main():
-    pt = PineText()
+    pt = PineText(data_dir="./data")
     pt.run()
 ```
 

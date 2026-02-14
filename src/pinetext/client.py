@@ -7,12 +7,11 @@ from pinetext.settings import Settings
 from pinetext import telemetry
 
 
-settings = Settings()
-
-
 class PineText:
-    def __init__(self):
-        pass
+    def __init__(self, *, data_dir: str | None = None):
+        self.settings = Settings()
+        if data_dir is not None:
+            self.settings.pinecone.data_dir = data_dir
 
     def get_or_create_assistant(self, name: str):
         try:
@@ -42,14 +41,14 @@ class PineText:
         return resp.message.content
 
     def run(self):
-        telemetry.init(settings.wandb.project, settings.wandb.api_key)
-        self.pinecone = Pinecone(api_key=settings.pinecone.api_key)
-        self.assistant = self.get_or_create_assistant(settings.pinecone.assistant)
-        self.upload_files(settings.pinecone.data_dir)
+        telemetry.init(self.settings.wandb.project, self.settings.wandb.api_key)
+        self.pinecone = Pinecone(api_key=self.settings.pinecone.api_key)
+        self.assistant = self.get_or_create_assistant(self.settings.pinecone.assistant)
+        self.upload_files(self.settings.pinecone.data_dir)
 
         while True:
             text = input("> ").strip()
             if text.lower() in ("exit", "quit"):
                 break
-            res = self.chat(text, settings.pinecone.model)
+            res = self.chat(text, self.settings.pinecone.model)
             print(res)
