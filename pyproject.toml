@@ -1,14 +1,17 @@
 [project]
 name = "pinetext"
-version = "0.2.3"
+version = "0.3.0"
 description = "PineText"
 readme = "README.md"
+liecense = "MIT"
 requires-python = ">=3.13"
 dependencies = [
     "pinecone>=8.0.0",
-    "pinecone-plugin-assistant>=3.0.0",
     "pydantic-settings>=2.12.0",
     "typer>=0.21.0",
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
 ]
 
 [project.scripts]
