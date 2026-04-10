@@ -8,10 +8,23 @@ from pinetext import telemetry
 
 
 class PineText:
-    def __init__(self, *, data_dir: str | None = None):
+    def __init__(
+        self,
+        *,
+        data_dir: str | None = None,
+        api_key: str | None = None,
+        assistant_name: str | None = None,
+        model: str | None = None,
+    ):
         self.settings = Settings()
         if data_dir is not None:
             self.settings.pinecone.data_dir = data_dir
+        if api_key is not None:
+            self.settings.pinecone.api_key = api_key
+        if assistant_name is not None:
+            self.settings.pinecone.assistant = assistant_name
+        if model is not None:
+            self.settings.pinecone.model = model
 
     def get_or_create_assistant(self, name: str):
         try:
