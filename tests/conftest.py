@@ -23,7 +23,9 @@ def pinetext(monkeypatch):
         def __init__(self):
             self.files = []
 
-        def create_assistant(self, assistant_name: str, instructions: str = None):
+        def create_assistant(
+            self, assistant_name: str, instructions: str | None = None
+        ):
             return self
 
         def describe_assistant(self, assistant_name: str):
