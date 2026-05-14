@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from pinecone import Pinecone
-from pinecone_plugins.assistant.models.chat import Message
+from pinecone.models.assistant.message import Message
 
 from pinetext.settings import Settings
 from pinetext import telemetry
