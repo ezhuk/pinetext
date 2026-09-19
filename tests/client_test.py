@@ -1,7 +1,5 @@
 import builtins
 
-from pinetext.client import PineText
-
 
 def test_get_or_create_assistant(pinetext):
     assistant = pinetext.get_or_create_assistant("foo")
