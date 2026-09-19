@@ -21,20 +21,20 @@ It can be embedded in and run directly from your application.
 from pinetext import PineText
 
 def main():
-    pt = PineText(data_dir="./data")
+    pt = PineText(name="test-assistant", model="gpt-5")
     pt.run()
 ```
 
 It can also be launched from the command line using the provided `CLI` without modifying the source code.
 
 ```
-pinetext
+pinetext ./data "Summarize these documents"
 ```
 
 Or in an ephemeral, isolated environment using `uvx`. Check out the [Using tools](https://docs.astral.sh/uv/guides/tools/) guide for more details.
 
 ```bash
-uvx pinetext
+uvx pinetext ./data
 ```
 
 ## Configuration
@@ -45,7 +45,7 @@ Place documents in the `data` folder and make sure to set `PINECONE_API_KEY` and
 export PINETEXT_PINECONE__API_KEY=your-api-key
 export PINETEXT_PINECONE__ASSISTANT=assistant-name
 export PINETEXT_PINECONE__DATA_DIR=data
-export PINETEXT_PINECONE__MODEL=o4-mini
+export PINETEXT_PINECONE__MODEL=gpt-5
 ```
 
 These settings can also be specified in a `.env` file in the working directory.
@@ -54,8 +54,18 @@ These settings can also be specified in a `.env` file in the working directory.
 pinetext_pinecone__api_key=your-api-key
 pinetext_pinecone__assistant=assistant-name
 pinetext_pinecone__data_dir=data
-pinetext_pinecone__model=o4-mini
+pinetext_pinecone__model=gpt-5
 ```
+
+## Observability
+
+PineText can optionally integrate with [W&B Weave](https://docs.wandb.ai/weave) for tracing and observability. Install the optional dependencies with:
+
+```bash
+uv sync --extra observability
+```
+
+Then configure the W&B `API key` and `project` in your environment or `.env` file.
 
 ## Docker
 

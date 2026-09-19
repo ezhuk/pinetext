@@ -1,6 +1,7 @@
 import pytest
 
 from pathlib import Path
+from types import SimpleNamespace
 
 import pinetext.client as client_mod
 from pinetext.client import PineText
@@ -19,44 +20,63 @@ def cli(monkeypatch):
 
 @pytest.fixture
 def pinetext(monkeypatch):
-    class DummyAssistant:
+    class DummyAssistants:
         def __init__(self):
-            self.files = []
+            self.files = {}
+            self.chat_calls = []
 
-        def create_assistant(
-            self, assistant_name: str, instructions: str | None = None
+        def describe(self, name: str):
+            return self
+
+        def create(self, name: str):
+            return self
+
+        def list_files(self, assistant_name: str):
+            return list(self.files.values())
+
+        def upload_file(
+            self,
+            assistant_name: str,
+            file_path: str,
+            file_id: str,
+            metadata=None,
         ):
-            return self
+            file = SimpleNamespace(
+                id=file_id,
+                name=Path(file_path).name,
+                metadata=metadata or {},
+            )
 
-        def describe_assistant(self, assistant_name: str):
-            return self
+            self.files[file_id] = file
 
-        def list_files(self):
-            return self.files
+            return file
 
-        def upload_file(self, file_path: str, metadata=None, timeout=None):
-            self.files.append(Path(file_path).name)
+        def chat(
+            self,
+            assistant_name: str,
+            messages,
+            model: str,
+        ):
+            self.chat_calls.append(
+                {
+                    "assistant_name": assistant_name,
+                    "messages": [message.copy() for message in messages],
+                    "model": model,
+                }
+            )
 
-        def chat(self, messages, model=None):
-            class Message:
-                def __init__(self, content):
-                    self.content = content
-
-            class Response:
-                def __init__(self, content):
-                    self.message = Message(content)
-
-            return Response("Test")
-
-    assistant = DummyAssistant()
+            return SimpleNamespace(
+                message=SimpleNamespace(
+                    content="Test",
+                )
+            )
 
     class DummyPinecone:
         def __init__(self, api_key):
-            self.assistant = assistant
+            self.assistants = DummyAssistants()
 
     monkeypatch.setattr(client_mod, "Pinecone", DummyPinecone)
 
     client = PineText()
-    client.assistant = assistant
     client.pinecone = DummyPinecone(None)
     return client

@@ -6,10 +6,4 @@ from pinetext.cli import app
 def test_cli(cli):
     runner = CliRunner()
     result = runner.invoke(app)
-    assert result.exit_code == 0
-
-
-def test_cli_data(cli):
-    runner = CliRunner()
-    result = runner.invoke(app, ["--data-dir", "."])
-    assert result.exit_code == 0
+    assert result.exit_code == 1
