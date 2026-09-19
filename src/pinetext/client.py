@@ -28,7 +28,7 @@ class PineText:
             self.settings.pinecone.assistant = name
         if model is not None:
             self.settings.pinecone.model = model
-        self.messages = []
+        self.messages: list[dict[str, str]] = []
 
     def get_or_create_assistant(self, name: str):
         try:
