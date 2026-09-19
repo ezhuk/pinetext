@@ -25,6 +25,6 @@ def test_init(monkeypatch):
     monkeypatch.setattr(telemetry, "wandb", DummyWandB())
     monkeypatch.setattr(telemetry, "weave", DummyWeave())
 
-    telemetry.init("pinetext-proj", api_key="secret")
+    telemetry.init(project="pinetext-proj", api_key="secret")
     assert calls["login"] == 1
     assert calls["init"] == 1

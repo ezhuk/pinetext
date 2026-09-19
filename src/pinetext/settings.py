@@ -4,14 +4,14 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Pinecone(BaseModel):
     api_key: str | None = None
-    assistant: str | None = "test-assistant"
-    data_dir: str | None = "data"
-    model: str | None = "o4-mini"
+    assistant: str = "test-assistant"
+    data_dir: str = "data"
+    model: str = "gpt-5"
 
 
 class WandB(BaseModel):
     api_key: str | None = None
-    project: str | None = "pinetext"
+    project: str = "pinetext"
 
 
 class Settings(BaseSettings):

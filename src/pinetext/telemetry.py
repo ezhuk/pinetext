@@ -7,9 +7,12 @@ F = TypeVar("F", bound=Callable[..., Any])
 
 try:
     import wandb
-    import weave
 except ImportError:
     wandb = None
+
+try:
+    import weave
+except ImportError:
     weave = None
 
 
