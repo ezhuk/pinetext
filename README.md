@@ -20,6 +20,7 @@ It can be embedded in and run directly from your application.
 # app.py
 from pinetext import PineText
 
+
 def main():
     pt = PineText(name="test-assistant", model="gpt-5")
     pt.run()

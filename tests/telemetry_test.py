@@ -1,4 +1,4 @@
-import pinetext.telemetry as telemetry
+from pinetext import telemetry
 
 
 def test_op():

@@ -1,7 +1,8 @@
-import pytest
-
 from pathlib import Path
 from types import SimpleNamespace
+
+import pytest
+from pinecone.models.assistant.chat import ChatMessage, ChatUsage
 
 import pinetext.client as client_mod
 from pinetext.client import PineText
@@ -65,10 +66,20 @@ def pinetext(monkeypatch):
                 }
             )
 
-            return SimpleNamespace(
-                message=SimpleNamespace(
+            return client_mod.ChatResponse(
+                id="test-response",
+                model=model,
+                usage=ChatUsage(
+                    prompt_tokens=0,
+                    completion_tokens=0,
+                    total_tokens=0,
+                ),
+                message=ChatMessage(
+                    role="assistant",
                     content="Test",
-                )
+                ),
+                finish_reason="stop",
+                citations=[],
             )
 
     class DummyPinecone:
@@ -78,5 +89,5 @@ def pinetext(monkeypatch):
     monkeypatch.setattr(client_mod, "Pinecone", DummyPinecone)
 
     client = PineText()
-    client.pinecone = DummyPinecone(None)
+    client.pinecone = DummyPinecone(None)  # ty: ignore[invalid-assignment]
     return client

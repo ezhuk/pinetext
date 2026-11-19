@@ -1,12 +1,11 @@
 import hashlib
-
 from pathlib import Path
 
-from pinecone import Pinecone
+from pinecone import NotFoundError, Pinecone
+from pinecone.models.assistant.chat import ChatResponse
 
-from pinetext.settings import Settings
 from pinetext import telemetry
-
+from pinetext.settings import Settings
 
 SUPPORTED_FILES = {
     ".docx",
@@ -33,7 +32,7 @@ class PineText:
     def get_or_create_assistant(self, name: str):
         try:
             return self.pinecone.assistants.describe(name=name)
-        except Exception:
+        except NotFoundError:
             return self.pinecone.assistants.create(name=name)
 
     def upload_files(self, path: Path):
@@ -67,6 +66,7 @@ class PineText:
             messages=self.messages,
             model=self.settings.pinecone.model,
         )
+        assert isinstance(res, ChatResponse)
         self.messages.append({"role": "assistant", "content": res.message.content})
         return res
 
