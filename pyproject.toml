@@ -36,3 +36,6 @@ dev = [
     "ruff>=0.17.0",
     "ty>=0.0.103",
 ]
+
+[tool.ty.analysis]
+allowed-unresolved-imports = ["wandb", "weave"]

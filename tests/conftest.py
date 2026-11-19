@@ -1,7 +1,7 @@
-import pytest
-
 from pathlib import Path
 from types import SimpleNamespace
+
+import pytest
 
 import pinetext.client as client_mod
 from pinetext.client import PineText
@@ -78,5 +78,5 @@ def pinetext(monkeypatch):
     monkeypatch.setattr(client_mod, "Pinecone", DummyPinecone)
 
     client = PineText()
-    client.pinecone = DummyPinecone(None)
+    client.pinecone = DummyPinecone(None)  # ty: ignore[invalid-assignment]
     return client
