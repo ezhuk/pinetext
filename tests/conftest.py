@@ -2,6 +2,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
+from pinecone.models.assistant.chat import ChatMessage
 
 import pinetext.client as client_mod
 from pinetext.client import PineText
@@ -65,10 +66,16 @@ def pinetext(monkeypatch):
                 }
             )
 
-            return SimpleNamespace(
-                message=SimpleNamespace(
+            return client_mod.ChatResponse(
+                id="test-response",
+                model=model,
+                usage=None,
+                message=ChatMessage(
+                    role="assistant",
                     content="Test",
-                )
+                ),
+                finish_reason="stop",
+                citations=[],
             )
 
     class DummyPinecone:

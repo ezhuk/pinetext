@@ -28,7 +28,7 @@ def run(
     ] = None,
     model: Annotated[
         str | None,
-        typer.Option(None, "--model", help="Model name"),
+        typer.Option("--model", help="Model name"),
     ] = None,
 ):
     if text is None and not sys.stdin.isatty():
