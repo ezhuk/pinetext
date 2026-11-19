@@ -2,7 +2,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
-from pinecone.models.assistant.chat import ChatMessage
+from pinecone.models.assistant.chat import ChatMessage, ChatUsage
 
 import pinetext.client as client_mod
 from pinetext.client import PineText
@@ -69,7 +69,11 @@ def pinetext(monkeypatch):
             return client_mod.ChatResponse(
                 id="test-response",
                 model=model,
-                usage=None,
+                usage=ChatUsage(
+                    prompt_tokens=0,
+                    completion_tokens=0,
+                    total_tokens=0,
+                ),
                 message=ChatMessage(
                     role="assistant",
                     content="Test",
